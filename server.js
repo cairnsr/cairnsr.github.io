@@ -9,7 +9,7 @@ var gameData = require('./gameData');
 
 
 var app = express();
-var port = process.env.PORT || 3000;
+//var port = process.env.PORT || 3000;
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -144,6 +144,6 @@ app.get('*', function(req, res) {
 
 
 
-app.listen(port, function(){
-	console.log("== Server listening on port", port);
-});
+//app.listen(port, function(){
+//	console.log("== Server listening on port", port);
+//});
