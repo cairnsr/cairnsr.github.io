@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../style.css">
+    </head>
+    <body>
+        <h1 style="font-family: starwars; padding-left: 20px;">Star Wars Database</h1>
+        <div class="topnav">
+            <a href="../characters">Characters</a>
+            <a href="../alliance">Alliances</a>
+            <a class="active" href="../planets">Planets</a>
+            <a href="../species">Species</a>
+            <a href="../character_movie">Characters & Movies</a>
+            <a href="../movies">Movies</a>
+        </div>
+
+        <h3>Add a new Planet:</h3>
+        <form id="addplanet" action="/planets" method="post">
+            Name: <input type="text" name="name"><br>
+            Diameter: <input type="text" name="diameter"><br>
+            Population: <input type="text" name="population"><br>
+            Climate: <input type="text" name="climate"><br>
+            <input type="submit" value="Submit">
+        </form>
+        <br/>
+
+        <h3>Current Planets:</h3>
+        <table>
+            <thead> 
+                <th>Name</th> 
+                <th>Diameter</th> 
+                <th>Population</th>
+                <th>Climate</th>
+            </thead> 
+            <tbody>
+                {{#each planets}} 
+                <tr> 
+                    <td>{{name}}</td> 
+                    <td>{{diameter}}</td> 
+                    <td>{{population}}</td> 
+                    <td>{{climate}}</td>
+                    <td><button onclick="deletePlanet({{id}})">Delete</button></td>
+                    <td><a href="/planets/{{id}}">Update</a></td>
+                </tr> 
+                {{/each}} 
+            </tbody> 
+        </table> 
+    </body>
+</html>

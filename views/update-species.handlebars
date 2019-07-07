@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../style.css">
+    </head>
+    <body>
+        <h1 style="font-family: starwars; padding-left: 20px;">Star Wars Database</h1>
+        <div class="topnav">
+            <a href="../characters">Characters</a>
+            <a href="../alliance">Alliances</a>
+            <a href="../planets">Planets</a>
+            <a class="active" href="../species">Species</a>
+            <a href="../character_movie">Characters & Movies</a>
+            <a href="../movies">Movies</a>
+        </div>
+
+        <h1>Update {{species.name}}:</h1>
+        <form id="update-species" action="/species" method="put">
+            Name: <input type="text" name="name" value="{{species.name}}"><br>
+            Lifespan: <input type="number" name="lifespan" value="{{species.lifespan}}"><br>
+            Height: <input type="number" name="height" value="{{species.height}}"><br>
+            Classification: <input type="text" name="classification" value="{{species.classification}}"><br>
+        </form>
+        <button onclick="updateSpecies({{species.id}})">Update</button>
+    </body>
+</html>

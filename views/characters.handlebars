@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../style.css">
+    </head>
+    <body>
+        <h1 style="font-family: starwars; padding-left: 20px;">Star Wars Database</h1>
+        <div class="topnav">
+            <a class="active" href="../characters">Characters</a>
+            <a href="../alliance">Alliances</a>
+            <a href="../planets">Planets</a>
+            <a href="../species">Species</a>
+            <a href="../character_movie">Characters & Movies</a>
+            <a href="../movies">Movies</a>
+        </div>
+
+        <h3>Add a new Character:</h3>
+        <form id="addcharacters" action="/characters" method="post">
+            First Name: <input type="text" name="fname"><br>
+            Last Name: <input type="text" name="lname"><br>
+            Race: <select name="race">
+                {{#each species}}
+                <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select><br>
+            Homeworld: <select name="homeworld">
+                {{#each planets}}
+                <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select> <br>
+            Association: <select name="association">
+                {{#each alliance}}
+                <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select> <br>
+            <input type="submit" value="Submit">
+        </form>
+        <br/>
+
+        <h3>Search for a Character by First Name:</h3>
+        <form id='search_people' action='' method=''>
+        <!--- this form does not submit directly, the button handles all the interaction with backend -->
+            <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+            <input type="button" value="Search" onclick="searchCharacterByFirstName()">
+        </form>
+
+        <h3>Current Characters:</h3>
+        <table>
+            <thead> 
+                <th>First Name</th> 
+                <th>Last Name</th> 
+                <th>Race</th>
+                <th>Homeworld</th>
+                <th>Association</th>
+            </thead> 
+            <tbody>
+                {{#each characters}} 
+                <tr> 
+                    <td>{{fname}}</td> 
+                    <td>{{lname}}</td> 
+                    <td>{{species}}</td> 
+                    <td>{{planets}}</td> 
+                    <td>{{alliance}}</td> 
+                    <td><button onclick="deleteCharacter({{id}})">Delete</button></td>
+                    <td><a href="/characters/{{id}}">Update</a></td>
+                </tr> 
+                {{/each}} 
+            </tbody> 
+        </table> 
+    </body>
+</html>

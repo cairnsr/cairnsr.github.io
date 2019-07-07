@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../style.css">
+    </head>
+    <body>
+        <h1 style="font-family: starwars; padding-left: 20px;">Star Wars Database</h1>
+        <div class="topnav">
+            <a href="../characters">Characters</a>
+            <a href="../alliance">Alliances</a>
+            <a href="../planets">Planets</a>
+            <a href="../species">Species</a>
+            <a class="active" href="../character_movie">Characters & Movies</a>
+            <a href="../movies">Movies</a>
+        </div>
+
+        <h3>Add a new Character to Movie Relationship:</h3>
+        <form id="addcharacter_movie" action="/character_movie" method="post">
+            Character: <select name="character_id">
+                {{#each characters}}
+                <option value="{{id}}">{{fname}} {{lname}}</option>
+                {{/each}}
+            </select><br>
+            Movie: <select name="movie_id">
+                {{#each movies}}
+                <option value="{{id}}">{{title}}</option>
+                {{/each}}
+            </select> <br>
+            <input type="submit" value="Submit">
+        </form>
+        <br/>
+
+        <h3>Current relationships:</h3>
+        <table>
+            <thead> 
+                <th>Character</th> 
+                <th>Movie</th>
+            </thead> 
+            <tbody>
+                {{#each character_movie}} 
+                <tr> 
+                    <td>{{fname}} {{lname}}</td> 
+                    <td>{{title}}</td> 
+                </tr> 
+                {{/each}} 
+            </tbody> 
+        </table> 
+    </body>
+</html>
