@@ -18,7 +18,7 @@ app.use(bodyparser.json());
 
 
 app.get('/', function(req,res) {
-	res.sendFile(path.join(__dirname+'/public/mainPage.html'));
+	res.sendFile(path.join(__dirname+'/index.html'));
 });
 
 app.post('/:console/:game/newcomment', function(req, res, next){
