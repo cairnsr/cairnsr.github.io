@@ -75,8 +75,8 @@ a {
 
 a:hover,
 a:focus {
-  color: #000099;
-  background-color: rgba(0,0,0,1);
+  color: rgba(0,0,0,1);
+  background-color: rgba(111,111,111,1);
 }
 
 a:focus {
