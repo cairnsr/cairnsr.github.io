@@ -8,22 +8,31 @@ a {
   text-decoration: none;
 }
 
-.logopic{	
-width: 155px;
-height: 22px;	
+.logopic{
+width: 220px;
+height: 70px;
+padding-left: 0px;
 }
 
-.work-config-price field-container{
-	color: rgba(255,0,0,1);
+
+.navitem.navlink.thelogopic {
+  padding: 0px;
+  margin: 0px;
+}
+
+.navlink.thelogopic {
+  padding: 0px;
+  margin: 0px;
 }
 
 .site-title {
-  margin: 0;
-  padding: 10px 20px;
+  margin: 0px;
+  /* padding: 10px 20px; */
+  padding: 5px 0px;
   font-size: 30px;
   font-weight: 100;
-  background-color: #319df6;
-  color: #fff;
+  background-color: rgba(250,250,250,1);
+  color: rgba(150,150,150,1);
 }
 
 .navbar {
@@ -33,12 +42,16 @@ height: 22px;
 }
 
 .navlist {
-  margin: 0 0 0 20px;
-  padding: 0;
+  margin: 0 0 0 5px;
+  padding: 0px;
+    overflow-x: scroll;
+    white-space: nowrap;
 }
 
 .navitem {
   display: inline-block;
+  /* padding: 0px 25px; */
+margin: 0px 15px;
 }
 
 li.redbubble a:hover{
@@ -66,6 +79,9 @@ li.book a:hover{
   background-color: rgba(251,176,59,1);
 }
 
+li.thelogopic a:hover{
+  background-color: rgba(255,255,255,1);
+}
 
 
 
@@ -76,7 +92,8 @@ a {
 a:hover,
 a:focus {
   color: rgba(255,255,255,1);
-  background-color: rgba(188,188,188,1);
+  background-color: rgba(120,120,120,1);
+
 }
 
 a:focus {
@@ -88,8 +105,10 @@ a:focus {
   display: inline-block;
 }
 
+
 .navlink.active {
-  box-shadow: inset 0 -3px rgba(0,0,0,1);
+  box-shadow: inset 0 -3px rgba(120,120,120,1);
+  padding: 0px -25px;
 }
 
 .navlink.active.redbubble {
