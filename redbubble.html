@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
 
@@ -18,10 +19,16 @@
 
     <header>
       <!-- The <i> tag below includes the bullhorn icon from Font Awesome -->
-      <a href="#"><h1 class="site-title"><i class="fa fa-hand-lizard-o"></i> Bumbershoot Company</h1></a>
+      <!-- <a href=""><h1 class="site-title"><img class = "logopic" src="Bumbershoot.png"/> B</h1></a> -->
 
       <nav class="navbar">
         <ul class="navlist">
+          <!-- <a href="/"><img class = "logopic" src="Bumbershoot.png"/></a> -->
+
+          <!-- <li><img class = "logopic" src="Bumbershoot.png"><a href="/"></a></li> -->
+          <!-- <li><a href="/"><img class = "logopic" src="Bumbershoot.png"></a></li> -->
+
+          <li class="navitem navlink thelogopic"><a href="/"><img class = "logopic" src="Bumbershoot.png"/></a></li>
           <li class="navitem navlink home"><a href="/">Home</a></li>
           <li class="navitem navlink redbubble active"><a href="redbubble">RedBubble</a></li>
           <li class="navitem navlink app"><a href="app">App</a></li>
@@ -30,11 +37,15 @@
           <li class="navitem navlink book"><a href="book">Kids Book</a></li>
           <li class="navitem navbar-search">
             <input type="text" id="navbar-search-input" placeholder="Search...">
+            <!-- <button type="button" id="add-word"><i class="fa fa-search"></i></button> -->
             <button type="button" id="navbar-search-button"><i class="fa fa-search"></i></button>
+
           </li>
         </ul>
       </nav>
     </header>
+
+
 
     <main class="twit-container">
 
@@ -44,23 +55,18 @@
         </div>
         <div class="twit-content">
           <p class="twit-text">
-            Sitting in web dev... This class is so awesome!
+            Text
           </p>
           <p class="twit-attribution">
-            <a href="#">CSMajor2017</a>
+            <a href="#">Text</a>
           </p>
         </div>
       </article>
-     
     </main>
-    
-    
-<script type="text/javascript" src="https://www.redbubble.com/assets/external_portfolio.js"></script>
-<script id="rb-xzfcxvzx" type="text/javascript">new RBExternalPortfolio('www.redbubble.com', 'ananaexpress', 5, 4).renderIframe();</script>
 
-    
 
-    <button type="button" id="create-twit-button"><i class="fa fa-bullhorn"></i></button>
+
+    <!-- <button type="button" id="create-twit-button"><i class="fa fa-bullhorn"></i></button> -->
 
     <div id="modal-backdrop" class="hidden"></div>
     <div id="create-twit-modal" class="hidden">
@@ -90,8 +96,121 @@
       </div>
     </div>
 
+
+
+
+    <div id="create-wordsearch-modal" class="hidden">
+      <div class="wordsearch-modal-dialog">
+
+        <div class="wordsearch-modal-header">
+          <h3>Search for Key Words</h3>
+          <button type="button" class="wordsearch-modal-close-button">&times;</button>
+        </div>
+
+
+
+
+
+
+        <div id="main" role="main">
+            <div id="puzzle"></div>
+            <!-- <ul id="words">
+                <li><button id="add-word">Add word</button></li>
+            </ul> -->
+            <fieldset id="controls">
+                <!-- <label for="allowed-missing-words">Allowed missing words :
+                    <input id="allowed-missing-words" type="number" min="0" max="8" step="1" value="0">
+                </label> -->
+                <!-- <label for="max-grid-growth">Max grid growth :
+                    <input id="max-grid-growth" type="number" min="0" max="8" step="1" value="6">
+                </label> -->
+                <!-- <label for="extra-letters">Extra letters :
+                    <select id="extra-letters">
+                        <option value="random">random</option>
+                    </select>
+                </label> -->
+                <!-- <label for="secret-word">Secret word :
+                    <input id="secret-word"> -->
+                <!-- </label> -->
+                <!-- <button id="create-grid">Create grid</button> -->
+                <p id="result-message"></p>
+                <!-- <button id="solve">Solve Puzzle</button> -->
+                <ul id="words">
+                    <li><button id="solve">Solve Puzzle</button></li>
+                </ul>
+
+            </fieldset>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="wordsearch-modal-footer">
+          <button type="button" class="wordsearch-modal-cancel-button">Cancel</button>
+        </div>
+
+
   </body>
 
-  <script src="/index.js" charset="utf-8"></script>
+  <script src="index.js" charset="utf-8"></script>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+  <!-- <script type="text/javascript" src="wordfindgame.js"></script> -->
+  <script>
+  /* Example words setup */
+  [
+
+    'redbubble',
+    'app',
+    'book',
+    'twitch',
+    'youtube',
+    'bumbershoot',
+    'company',
+  ].map(word => WordFindGame.insertWordBefore($('#solve').parent(), word));
+  // $('#secret-word').val('LAETITIA');
+
+  /* Init */
+  function recreate() {
+
+      $('#result-message').removeClass();
+      var fillBlanks, game;
+
+      try {
+          game = new WordFindGame('#puzzle', {
+              allowedMissingWords: +$('#allowed-missing-words').val(),
+              maxGridGrowth: +$('#max-grid-growth').val(),
+              fillBlanks: fillBlanks,
+              //allowExtraBlanks: ['none', 'secret-word-plus-blanks'].includes($('#extra-letters').val()),
+              maxAttempts: 100,
+          });
+      } catch (error) {
+          $('#result-message').text(`😞 ${error}, try to specify less ones`).css({color: 'red'});
+          return;
+      }
+      wordfind.print(game);
+      if (window.game) {
+          var emptySquaresCount = WordFindGame.emptySquaresCount();
+          $('#result-message').text(`😃 ${emptySquaresCount ? 'but there are empty squares' : ''}`).css({color: ''});
+      }
+      window.game = game;
+  }
+  recreate();
+
+  /* Event listeners */
+  //$('#extra-letters').change((evt) => $('#secret-word').prop('disabled', !evt.target.value.startsWith('secret-word')));
+
+  // $('#add-word').click( () => WordFindGame.insertWordBefore($('#add-word').parent()));
+
+  $('#create-grid').click(recreate);
+
+  $('#solve').click(() => game.solve());
+  </script>
+
 
 </html>
