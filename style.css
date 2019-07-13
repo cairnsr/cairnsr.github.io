@@ -257,6 +257,17 @@ a:focus {
   overflow: scroll;
 }
 
+
+#create-wordsearch-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1010;
+  overflow: scroll;
+}
+
 .hidden {
   display: none;
 }
@@ -271,14 +282,43 @@ a:focus {
   border-radius: 15px;
 }
 
+
+.wordsearch-modal-dialog {
+  width: auto;
+  max-width: 950px;
+  min-width: 350px;
+  min-height: 750px;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 15px;
+}
+
 .modal-header {
   position: relative;
   padding: 10px 20px;
 }
 
+.wordsearch-modal-header {
+  position: relative;
+  padding: 10px 20px;
+  margin: 0px;
+
+}
+
+
 .modal-header h3 {
   margin: 0;
   font-size: 28px;
+  width: 100px;
+}
+
+.wordsearch-modal-header h3 {
+  margin: 0;
+  font-size: 28px;
+  width: 300px;
+  margin: 0px;
+  margin-top: 10px;
+
 }
 
 .modal-close-button {
@@ -291,6 +331,19 @@ a:focus {
   padding: 0;
   cursor: pointer;
 }
+
+
+.wordsearch-modal-close-button {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 24px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
 
 .modal-body {
   padding: 20px;
@@ -338,8 +391,46 @@ a:focus {
   cursor: pointer;
 }
 
+
+
+.wordsearch-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 10px 20px 10px;
+}
+
+.wordsearch-modal-footer button {
+  font-size: 20px;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+  margin-top: 150px;
+}
+
 .modal-footer .modal-cancel-button:hover {
   background-color: #eee;
+
+}
+
+
+.wordsearch-modal-footer .wordsearch-modal-cancel-button:hover {
+  background-color: #eee;
+/* display: inline-block;
+max-width: 30rem;
+padding: 100em;
+border: none;
+text-align: left;
+margin-inline-start: 2px;
+margin-inline-end: 2px;
+padding-block-start: 0.35em;
+padding-inline-start: 0.75em;
+padding-inline-end: 0.75em;
+padding-block-end: 0.625em;
+min-inline-size: min-content; */
 }
 
 .modal-footer .modal-accept-button {
@@ -366,4 +457,155 @@ a:focus {
   margin: 10px 0;
   font-size: 36px;
   font-weight: 400;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+* Styles for the puzzle
+*/
+#puzzle {
+  display: inline-block;
+  border: 2px solid black;
+  padding: 3vw;
+  border-radius: 20px;
+}
+
+#puzzle > div { /* rows */
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* style for each square in the puzzle */
+.puzzleSquare {
+  height: 7vw;
+  width: 7vw;
+  text-transform: uppercase;
+  background-color: white;
+  border: 0;
+  font: 5vw sans-serif;
+}
+@media only screen and (min-width: 600px) {
+  #puzzle {
+    float: left;
+    padding: 20px;
+    margin: 20px;
+    margin-bottom: 40px;
+
+  }
+  .puzzleSquare {
+    height: 3rem;
+    width: 3rem;
+    font: 30px sans-serif;
+  }
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+/* indicates when a square has been selected */
+#puzzle .selected {
+  background-color: rgba(150,150,150,1);
+}
+
+/* indicates that the square is part of a word that has been found */
+#puzzle .found {
+  background-color: rgba(75,75,75,1);
+  color: white;
+}
+
+#puzzle .solved {
+  background-color: rgba(200,200,200,1);
+  color: white;
+}
+
+/* indicates that all words have been found */
+#puzzle .complete {
+  background-color: green;
+}
+
+/**
+* Styles for the word list
+*/
+#words {
+  display: inline-block;
+  max-width: 30rem;
+  padding: 1em;
+  list-style-type: none;
+  text-align: left;
+}
+@media only screen and (min-width: 600px) {
+  #words {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 1;
+    column-gap: 20px;
+  }
+}
+
+#words li {
+  padding: 3px 0;
+  font: 20px sans-serif;
+}
+
+/* indicates that the word has been found */
+.wordFound {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/**
+* Styles for the controls
+*/
+#controls {
+  display: inline-block;
+  max-width: 30rem;
+  padding: 1em;
+  border: none;
+  text-align: left;
+}
+label {
+  white-space: nowrap;
+  margin-top: 1em;
+}
+input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 20px;
+  max-width: 200px;
+}
+input[type="number"] {
+  width: 2rem;
+}
+select {
+  max-width: 10rem;
+}
+#create-grid, #solve {
+  display: block;
+  margin-top: 1rem;
+  font-size: 20px;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+#secret-word {
+  text-transform: uppercase;
+}
+
+#result-message {
+  font-size: 20px;
 }
